@@ -25,7 +25,7 @@ import android.widget.Toast;
 public class CreateFragment extends Fragment {
 
     Integer userId;
-    EditText etTitle, etAuthor, etDesc, etDate;
+    EditText etTitle, etAuthor, etDesc, etDate, etRating;
     Spinner spType;
     Switch swViewed;
     Button btnCreate;
@@ -81,9 +81,12 @@ public class CreateFragment extends Fragment {
         etAuthor = view.findViewById(R.id.etAuthor);
         etDesc = view.findViewById(R.id.etDesc);
         etDate = view.findViewById(R.id.etDate);
+        etRating = view.findViewById(R.id.etRating);
         spType = view.findViewById(R.id.spType);
         swViewed = view.findViewById(R.id.swViewed);
         btnCreate = view.findViewById(R.id.btnCreate);
+
+        etRating.setFilters(new RatingBarFilter[]{new RatingBarFilter(0, 5)});
 
         swViewed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,12 +121,13 @@ public class CreateFragment extends Fragment {
                 String desc = etDesc.getText().toString();
                 String date = etDate.getText().toString();
                 String type = spType.getSelectedItem().toString();
+                String rating = etRating.getText().toString();
                 Boolean viewed = swViewed.getText().toString() == "Viewed" ? true : false;
 
-                if (author.equals("") || desc.equals("") || date.equals("") || type.equals("Select item type")) {
+                if (author.equals("") || desc.equals("") || date.equals("") || type.equals("Select item type") || rating.equals("")) {
                     Toast.makeText(getContext(), "Please fill in all fields.", Toast.LENGTH_SHORT).show();
                 } else {
-                    boolean insert = DB.insertCollection(userId, title, author, desc, type, viewed, date);
+                    boolean insert = DB.insertCollection(userId, title, author, desc, type, viewed, date, rating);
                     if (insert) {
                         Toast.makeText(getContext(), "Successfully created listing.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(), MainActivity.class);

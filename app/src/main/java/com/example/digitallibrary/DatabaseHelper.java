@@ -31,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "  `type` TEXT NOT NULL, " +
                 "  `viewed` TINYINT NOT NULL, " +
                 "  `datePublished` DATE NOT NULL, " +
+                "  `rating` INTEGER NOT NULL, " +
                 "  CONSTRAINT `userId` " +
                 "    FOREIGN KEY (`userId`) " +
                 "    REFERENCES " + USER_TABLE +
@@ -110,7 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Methods for collection
-    public boolean insertCollection(Integer userId, String title, String author, String desc, String type, Boolean viewed, String datePublished) {
+    public boolean insertCollection(Integer userId, String title, String author, String desc, String type, Boolean viewed, String datePublished, String rating) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("userId", userId);
@@ -120,6 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put("type", type);
         cv.put("viewed", viewed);
         cv.put("datePublished", datePublished);
+        cv.put("rating", rating);
 
         long result = myDB.insert(BOOK_TABLE, null, cv);
 

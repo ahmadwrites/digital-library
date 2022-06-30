@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,9 +29,11 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
     ArrayList type;
     ArrayList viewed;
     ArrayList datePublished;
+    ArrayList rating;
+
     CardView cardCollection;
 
-    CollectionAdapter(Context context, ArrayList userId, ArrayList title, ArrayList author, ArrayList desc, ArrayList type, ArrayList viewed, ArrayList datePublished) {
+    CollectionAdapter(Context context, ArrayList userId, ArrayList title, ArrayList author, ArrayList desc, ArrayList type, ArrayList viewed, ArrayList datePublished, ArrayList rating) {
         this.context = context;
         this.userId = userId;
         this.title = title;
@@ -39,6 +42,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
         this.type = type;
         this.viewed = viewed;
         this.datePublished = datePublished;
+        this.rating = rating;
     }
 
     @NonNull
@@ -54,6 +58,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
         holder.txtType.setText(String.valueOf(type.get(position)));
         holder.txtTitle.setText(String.valueOf(title.get(position)));
         holder.txtAuthor.setText(String.valueOf(author.get(position)));
+        holder.rbReview.setRating(Float.parseFloat(String.valueOf(rating.get(position))));
 
         cardCollection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +69,8 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
                 intent.putExtra("desc", String.valueOf(desc.get(position)));
                 intent.putExtra("type", String.valueOf(type.get(position)));
                 intent.putExtra("viewed", String.valueOf(viewed.get(position)));
-                intent.putExtra("datePublished", String.valueOf(datePublished.get(position)));
+                intent.putExtra("date", String.valueOf(datePublished.get(position)));
+                intent.putExtra("rating", String.valueOf(rating.get(position)));
                 context.startActivity(intent);
             }
         });
@@ -78,6 +84,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtType, txtTitle, txtAuthor;
+        RatingBar rbReview;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,6 +92,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
             txtType = itemView.findViewById(R.id.txtType);
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtAuthor = itemView.findViewById(R.id.txtAuthor);
+            rbReview = itemView.findViewById(R.id.rbReview);
             cardCollection = itemView.findViewById(R.id.cardCollection);
 
         }

@@ -36,6 +36,7 @@ public class HomeFragment extends Fragment {
     ArrayList<String> type;
     ArrayList<Integer> viewed;
     ArrayList<String> datePublished;
+    ArrayList<String> rating;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,10 +92,11 @@ public class HomeFragment extends Fragment {
         type = new ArrayList<>();
         viewed = new ArrayList<>();
         datePublished = new ArrayList<>();
+        rating = new ArrayList<>();
 
         storeDataInArray();
 
-        collectionAdapter = new CollectionAdapter(getContext(), userId, title, author, desc, type, viewed, datePublished);
+        collectionAdapter = new CollectionAdapter(getContext(), userId, title, author, desc, type, viewed, datePublished, rating);
         rc_home.setAdapter(collectionAdapter);
         rc_home.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -120,6 +122,7 @@ public class HomeFragment extends Fragment {
                 type.add(cursor.getString(5));
                 viewed.add(cursor.getInt(6));
                 datePublished.add(cursor.getString(7));
+                rating.add(cursor.getString(8));
             }
         }
     }
