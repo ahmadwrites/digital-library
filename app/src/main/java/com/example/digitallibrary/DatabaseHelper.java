@@ -22,13 +22,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createUserTable = "CREATE TABLE " + USER_TABLE + " (userId INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, phone TEXT)";
+        String createCollectionTable = "CREATE TABLE " + BOOK_TABLE + " (" +
+                "  `collectionId` INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "  `userId` INT NOT NULL, " +
+                "  `title` TEXT NOT NULL, " +
+                "  `author` TEXT NOT NULL, " +
+                "  `desc` TEXT NOT NULL, " +
+                "  `type` TEXT NOT NULL, " +
+                "  `viewed` TINYINT NOT NULL, " +
+                "  `datePublished` DATE NOT NULL, " +
+                "  CONSTRAINT `userId` " +
+                "    FOREIGN KEY (`userId`) " +
+                "    REFERENCES " + USER_TABLE +
+                "    ON DELETE CASCADE" +
+                "    ON UPDATE CASCADE)";
 
         db.execSQL(createUserTable);
+        db.execSQL(createCollectionTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + BOOK_TABLE);
     }
 
     public boolean insertUserData(String username, String password, String phone) {
@@ -91,5 +107,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (result > 0) return true;
         return false;
+    }
+
+    // Methods for collection
+    public boolean insertCollection(Integer userId, String title, String author, String desc, String type, Boolean viewed, String datePublished) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("userId", userId);
+        cv.put("title", title);
+        cv.put("author", author);
+        cv.put("desc", desc);
+        cv.put("type", type);
+        cv.put("viewed", viewed);
+        cv.put("datePublished", datePublished);
+
+        long result = myDB.insert(BOOK_TABLE, null, cv);
+
+        if (result == 1) return false;
+        return true;
     }
 }

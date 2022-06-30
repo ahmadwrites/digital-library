@@ -2,4 +2,13 @@
     <string name="app_name">Digital Library</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="type">
+        <item>Select item type</item>
+        <item>Book</item>
+        <item>Comic</item>
+        <item>Movie</item>
+        <item>TV Show</item>
+        <item>Others</item>
+    </string-array>
 </resources>
