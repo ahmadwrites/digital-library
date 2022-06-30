@@ -1,12 +1,20 @@
 package com.example.digitallibrary;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +22,20 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+    RecyclerView rc_home;
+    DatabaseHelper DB;
+    CollectionAdapter collectionAdapter;
+
+    String currentUserId;
+
+    ArrayList<String> userId;
+    ArrayList<String> title;
+    ArrayList<String> author;
+    ArrayList<String> desc;
+    ArrayList<String> type;
+    ArrayList<Integer> viewed;
+    ArrayList<String> datePublished;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,9 +78,61 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        DB = new DatabaseHelper(getContext());
+        rc_home = view.findViewById(R.id.rc_home);
+
+        userId = new ArrayList<>();
+        title = new ArrayList<>();
+        author = new ArrayList<>();
+        desc = new ArrayList<>();
+        type = new ArrayList<>();
+        viewed = new ArrayList<>();
+        datePublished = new ArrayList<>();
+
+        storeDataInArray();
+
+        collectionAdapter = new CollectionAdapter(getContext(), userId, title, author, desc, type, viewed, datePublished);
+        rc_home.setAdapter(collectionAdapter);
+        rc_home.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        return view;
+    }
+
+    void storeDataInArray() {
+        SharedPreferences prefs = getContext().getSharedPreferences("PrefsFile", Context.MODE_PRIVATE);
+        String currentUser = prefs.getString("username", "user");
+
+        getCurrentUserId(currentUser);
+
+        Cursor cursor = DB.readUserPosts(currentUserId);
+
+        if (cursor.getCount() == 0) {
+            Toast.makeText(getContext(), "No data.", Toast.LENGTH_SHORT).show();
+        } else {
+            while (cursor.moveToNext()) {
+                userId.add(cursor.getString(1));
+                title.add(cursor.getString(2));
+                author.add(cursor.getString(3));
+                desc.add(cursor.getString(4));
+                type.add(cursor.getString(5));
+                viewed.add(cursor.getInt(6));
+                datePublished.add(cursor.getString(7));
+            }
+        }
+    }
+
+    void getCurrentUserId(String username) {
+        Cursor cursor = DB.readCurrentUser(username);
+
+        if (cursor.getCount() == 0) {
+            Toast.makeText(getContext(), "No data.", Toast.LENGTH_SHORT).show();
+        } else {
+            while (cursor.moveToNext()) {
+                currentUserId = cursor.getString(0);
+            }
+        }
     }
 }

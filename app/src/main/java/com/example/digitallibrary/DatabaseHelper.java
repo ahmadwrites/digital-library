@@ -126,4 +126,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (result == 1) return false;
         return true;
     }
+
+    public Cursor readUserPosts(String userId) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        Cursor cursor = null;
+
+        if(myDB != null) {
+            cursor = myDB.rawQuery("SELECT * FROM " + BOOK_TABLE + " WHERE userId = ?", new String[]{userId});
+        }
+
+        return cursor;
+    }
 }
