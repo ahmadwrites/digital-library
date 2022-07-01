@@ -158,4 +158,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (result > 0) return true;
         return false;
     }
+
+    public Boolean deleteCollection(String collectionId) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+
+        int result = myDB.delete(BOOK_TABLE, "collectionId = ?", new String[]{collectionId});
+
+        if (result > 0) return true;
+        return false;
+    }
 }

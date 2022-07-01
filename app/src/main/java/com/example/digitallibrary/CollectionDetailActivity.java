@@ -1,19 +1,23 @@
 package com.example.digitallibrary;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CollectionDetailActivity extends AppCompatActivity {
 
     TextView txtTitle, txtAuthor, txtDesc, txtType, txtDate, txtViewed, txtCollectionId;
     RatingBar rbReview;
     Button btnEdit, btnDelete;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,8 @@ public class CollectionDetailActivity extends AppCompatActivity {
         txtCollectionId = findViewById(R.id.txtCollectionId);
         btnEdit = findViewById(R.id.btnEdit);
         btnDelete = findViewById(R.id.btnDelete);
+
+        db = new DatabaseHelper(this);
 
         String title = getIntent().getStringExtra("title");
         String author = getIntent().getStringExtra("author");
@@ -74,6 +80,37 @@ public class CollectionDetailActivity extends AppCompatActivity {
                 intent.putExtra("viewed", finalViewedStatus);
                 intent.putExtra("rating", rating);
                 startActivity(intent);
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CollectionDetailActivity.this);
+                builder.setTitle("Confirm delete collection");
+                builder.setMessage("Are you sure you want to delete your collection?");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        boolean delete = db.deleteCollection(collectionId);
+                        if (delete) {
+                            Toast.makeText(CollectionDetailActivity.this, "Successfully deleted post", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(CollectionDetailActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(CollectionDetailActivity.this, "Something went wrong, try again later.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
