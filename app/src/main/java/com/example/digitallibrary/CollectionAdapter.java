@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.MyViewHolder> {
 
     Context context;
+    ArrayList collectionId;
     ArrayList userId;
     ArrayList title;
     ArrayList author;
@@ -33,8 +34,9 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
 
     CardView cardCollection;
 
-    CollectionAdapter(Context context, ArrayList userId, ArrayList title, ArrayList author, ArrayList desc, ArrayList type, ArrayList viewed, ArrayList datePublished, ArrayList rating) {
+    CollectionAdapter(Context context, ArrayList collectionId, ArrayList userId, ArrayList title, ArrayList author, ArrayList desc, ArrayList type, ArrayList viewed, ArrayList datePublished, ArrayList rating) {
         this.context = context;
+        this.collectionId = collectionId;
         this.userId = userId;
         this.title = title;
         this.author = author;
@@ -64,6 +66,8 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context.getApplicationContext(), CollectionDetailActivity.class);
+                intent.putExtra("collectionId", String.valueOf(collectionId.get(position)));
+                intent.putExtra("userId", String.valueOf(userId.get(position)));
                 intent.putExtra("title", String.valueOf(title.get(position)));
                 intent.putExtra("author", String.valueOf(author.get(position)));
                 intent.putExtra("desc", String.valueOf(desc.get(position)));

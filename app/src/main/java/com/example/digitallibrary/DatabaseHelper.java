@@ -140,4 +140,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+    public Boolean updateCollection(String collectionId, String title, String author, String desc, String type, Boolean viewed, String datePublished, String rating) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("collectionId", collectionId);
+        cv.put("title", title);
+        cv.put("author", author);
+        cv.put("desc", desc);
+        cv.put("type", type);
+        cv.put("viewed", viewed);
+        cv.put("datePublished", datePublished);
+        cv.put("rating", rating);
+
+        int result = myDB.update(BOOK_TABLE, cv, "collectionId = ?", new String[]{collectionId});
+
+        if (result > 0) return true;
+        return false;
+    }
 }

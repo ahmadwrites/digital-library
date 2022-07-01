@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
 
     String currentUserId;
 
+    ArrayList<String> collectionId;
     ArrayList<String> userId;
     ArrayList<String> title;
     ArrayList<String> author;
@@ -85,6 +86,7 @@ public class HomeFragment extends Fragment {
         DB = new DatabaseHelper(getContext());
         rc_home = view.findViewById(R.id.rc_home);
 
+        collectionId = new ArrayList<>();
         userId = new ArrayList<>();
         title = new ArrayList<>();
         author = new ArrayList<>();
@@ -96,7 +98,7 @@ public class HomeFragment extends Fragment {
 
         storeDataInArray();
 
-        collectionAdapter = new CollectionAdapter(getContext(), userId, title, author, desc, type, viewed, datePublished, rating);
+        collectionAdapter = new CollectionAdapter(getContext(), collectionId, userId, title, author, desc, type, viewed, datePublished, rating);
         rc_home.setAdapter(collectionAdapter);
         rc_home.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -115,6 +117,7 @@ public class HomeFragment extends Fragment {
             Toast.makeText(getContext(), "No data.", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
+                collectionId.add(cursor.getString(0));
                 userId.add(cursor.getString(1));
                 title.add(cursor.getString(2));
                 author.add(cursor.getString(3));
