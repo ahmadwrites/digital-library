@@ -89,11 +89,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Boolean editProfile(String username, String phone, String bio) {
+    public Boolean editProfile(String username, String phone) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("phone", phone);
-        contentValues.put("bio", bio);
         int result = myDB.update(USER_TABLE, contentValues, "username = ?", new String[]{username});
 
         if (result > 0) return true;

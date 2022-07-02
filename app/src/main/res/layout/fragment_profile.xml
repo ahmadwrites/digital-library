@@ -27,6 +27,103 @@
             android:fontFamily="serif"
             android:text="View your information."
             android:textColor="@color/tan_700" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/tree" />
+
+                <TextView
+                    android:id="@+id/txtUsername"
+                    android:textColor="@color/tan_900"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:layout_gravity="center_horizontal"
+                    android:text="User's Profile"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:text="Settings"
+                        android:textColor="@color/tan_900"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:text="Edit your information."
+                        android:textColor="@color/tan_700" />
+
+                    <TextView
+                        android:id="@+id/txtEditProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableEnd="@drawable/ic_person"
+                        android:drawableTint="@color/tan_900"
+                        android:text="Edit Profile"
+                        android:textColor="@color/tan_900"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtChangePassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableEnd="@drawable/ic_key"
+                        android:drawableTint="@color/tan_900"
+                        android:text="Change Password"
+                        android:textColor="@color/tan_900"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtAbout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableEnd="@drawable/ic_apps"
+                        android:drawableTint="@color/tan_900"
+                        android:text="Similar Applications"
+                        android:textColor="@color/tan_900"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtLogout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableEnd="@drawable/ic_exit"
+                        android:drawableTint="@color/tan_900"
+                        android:text="Logout"
+                        android:textColor="@color/tan_900"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </FrameLayout>
