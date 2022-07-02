@@ -7,6 +7,7 @@
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/drawable/buttons_background.xml" value="0.35" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/drawable/custom_thumb.xml" value="0.35" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/drawable/custom_track.xml" value="0.35" />
+        <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/drawable/cut_cut_background.xml" value="0.35" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/drawable/edit_text_background.xml" value="0.35" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/drawable/ic_home.xml" value="0.35" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/activity_collection_detail.xml" value="0.446875" />
@@ -16,10 +17,12 @@
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/activity_main.xml" value="0.446875" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/activity_register.xml" value="0.446875" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/collection_row.xml" value="0.446875" />
+        <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/fragment_category_collection.xml" value="0.446875" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/fragment_create.xml" value="0.446875" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/fragment_explore.xml" value="0.446875" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/fragment_home.xml" value="0.446875" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/fragment_profile.xml" value="0.446875" />
+        <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/layout/fragment_searched_collection.xml" value="0.446875" />
         <entry key="..\:/Users/Ahmad/OneDrive/Desktop/Xiamen University/year 3/year 3 sem 3/Mobile Application System Design/DigitalLibrary/app/src/main/res/menu/bottom_nav_menu.xml" value="0.446875" />
       </map>
     </option>

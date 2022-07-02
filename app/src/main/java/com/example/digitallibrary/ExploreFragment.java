@@ -2,11 +2,17 @@ package com.example.digitallibrary;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
@@ -18,6 +24,9 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 public class ExploreFragment extends Fragment {
 
     YouTubePlayerView ytPlayer;
+    EditText etSearch;
+
+    CardView cardBooks, cardComics, cardMovies, cardTv, cardOthers;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,8 +72,112 @@ public class ExploreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_explore, container, false);
 
+        cardBooks = view.findViewById(R.id.cardBooks);
+        cardComics = view.findViewById(R.id.cardComics);
+        cardMovies = view.findViewById(R.id.cardMovies);
+        cardTv = view.findViewById(R.id.cardTv);
+        cardOthers = view.findViewById(R.id.cardOthers);
+
         ytPlayer = view.findViewById(R.id.ytPlayer);
         getLifecycle().addObserver(ytPlayer);
+
+        etSearch = view.findViewById(R.id.etSearch);
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    String searchQuery = etSearch.getText().toString();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("search", searchQuery);
+                    Fragment SearchFragment = new SearchedCollectionFragment();
+                    SearchFragment.setArguments(bundle);
+                    getParentFragmentManager().setFragmentResult("search", bundle);
+
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.frame_layout, new SearchedCollectionFragment())
+                            .commit();
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        cardBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "Book");
+                Fragment SportFragment = new CategoryCollectionFragment();
+                SportFragment.setArguments(bundle);
+                getParentFragmentManager().setFragmentResult("type", bundle);
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, new CategoryCollectionFragment())
+                        .commit();
+            }
+        });
+
+        cardComics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "Comic");
+                Fragment SportFragment = new CategoryCollectionFragment();
+                SportFragment.setArguments(bundle);
+                getParentFragmentManager().setFragmentResult("type", bundle);
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, new CategoryCollectionFragment())
+                        .commit();
+            }
+        });
+
+        cardMovies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "Movie");
+                Fragment SportFragment = new CategoryCollectionFragment();
+                SportFragment.setArguments(bundle);
+                getParentFragmentManager().setFragmentResult("type", bundle);
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, new CategoryCollectionFragment())
+                        .commit();
+            }
+        });
+
+        cardTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "TV Show");
+                Fragment SportFragment = new CategoryCollectionFragment();
+                SportFragment.setArguments(bundle);
+                getParentFragmentManager().setFragmentResult("type", bundle);
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, new CategoryCollectionFragment())
+                        .commit();
+            }
+        });
+
+        cardOthers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "Others");
+                Fragment SportFragment = new CategoryCollectionFragment();
+                SportFragment.setArguments(bundle);
+                getParentFragmentManager().setFragmentResult("type", bundle);
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, new CategoryCollectionFragment())
+                        .commit();
+            }
+        });
 
         return view;
     }

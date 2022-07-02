@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="serif"
-            android:text="Search an item."
+            android:text="Expand your collection."
             android:textColor="@color/tan_700" />
 
         <ScrollView
@@ -47,6 +47,7 @@
                     android:drawableEnd="@drawable/ic_search"
                     android:hint="Search an item"
                     android:imeOptions="actionDone"
+                    android:inputType="text"
                     android:padding="16dp" />
 
                 <TextView
@@ -72,6 +73,7 @@
                         android:orientation="horizontal">
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cardBooks"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             app:cardCornerRadius="10dp">
@@ -99,6 +101,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cardComics"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="12dp"
@@ -127,6 +130,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cardMovies"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="12dp"
@@ -155,6 +159,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cardTv"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="12dp"
@@ -183,6 +188,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cardOthers"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="12dp"
@@ -229,8 +235,8 @@
                     android:id="@+id/ytPlayer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:videoId="A-jzAyOO6d4"
-                    app:autoPlay="false" />
+                    app:autoPlay="false"
+                    app:videoId="A-jzAyOO6d4" />
 
             </LinearLayout>
         </ScrollView>

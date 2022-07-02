@@ -141,6 +141,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor readSearchPosts(String userId, String search) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        Cursor cursor = null;
+
+        if(myDB != null) {
+            cursor = myDB.rawQuery("SELECT * FROM " + BOOK_TABLE + " WHERE userId = ? AND (title LIKE '%'||?||'%' OR author LIKE '%'||?||'%')", new String[]{userId, search, search});
+        }
+
+        return cursor;
+    }
+
+    public Cursor readCategoryPosts(String userId, String category) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        Cursor cursor = null;
+
+        if(myDB != null) {
+            cursor = myDB.rawQuery("SELECT * FROM " + BOOK_TABLE + " WHERE userId = ? AND type = ?", new String[]{userId, category});
+        }
+
+        return cursor;
+    }
+
     public Boolean updateCollection(String collectionId, String title, String author, String desc, String type, Boolean viewed, String datePublished, String rating) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
